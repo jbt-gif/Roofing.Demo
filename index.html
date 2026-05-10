@@ -1117,7 +1117,7 @@
     <a href="https://hirayasystems.tech" class="nav-logo">
       <img src="../Hiraya_black_logo-removebg-preview.png" alt="Hiraya Systems" />
     </a>
-    <a href="https://cal.com/hiraya-systems-ajfryr" target="_blank" class="nav-cta">
+    <a href="#" data-cal-link="hiraya-systems-ajfryr" data-cal-origin="https://cal.com" class="nav-cta">
       Book a free call
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </a>
@@ -1361,7 +1361,7 @@
         <div class="thank-you" id="thankYou">
           <h3>You're all set.</h3>
           <p>Check your email — we sent your result and a booking link. We'll also reach out personally within 1 hour.</p>
-          <a href="https://cal.com/hiraya-systems-ajfryr" target="_blank" class="cal-link">
+          <a href="#" data-cal-link="hiraya-systems-ajfryr" data-cal-origin="https://cal.com" class="cal-link">
             Book your free 15-min call
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </a>
@@ -1482,6 +1482,13 @@
 
     // ── Init
     calc();
+  </script>
+
+  <!-- Cal.com popup embed -->
+  <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, [L, namespace, ar[2]])} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"});
+  Cal("ui", {"styles":{"branding":{"brandColor":"#e8352a"}},"hideEventTypeDetails":false});
   </script>
 </body>
 </html>
