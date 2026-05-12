@@ -1353,13 +1353,18 @@
               <input type="email" name="email" id="emailField" class="field" placeholder="Email address" required />
               <input type="tel" name="phone" class="field" placeholder="Phone number" required />
             </div>
-            <select name="biggest_challenge" class="field" required style="appearance:none;-webkit-appearance:none;cursor:pointer;grid-column:1/-1;background:#0f0f0f;color:#f0ede8;">
-              <option value="" disabled selected style="background:#0f0f0f;color:rgba(240,237,232,0.45);">What's your biggest challenge right now?</option>
-              <option value="Crew missing calls during jobs" style="background:#0f0f0f;color:#f0ede8;">Crew missing calls during jobs</option>
-              <option value="No one answering after hours" style="background:#0f0f0f;color:#f0ede8;">No one answering after hours</option>
-              <option value="Leads not following up" style="background:#0f0f0f;color:#f0ede8;">Leads not following up</option>
-              <option value="Other" style="background:#0f0f0f;color:#f0ede8;">Other</option>
-            </select>
+            <div style="position:relative;width:100%;">
+              <p style="font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,237,232,0.55);margin-bottom:8px;text-align:left;">What's your biggest challenge right now? <span style="color:#e8352a;">*</span></p>
+              <select id="challengeSelect" name="biggest_challenge" class="field" required style="appearance:none;-webkit-appearance:none;cursor:pointer;width:100%;background:#0f0f0f;color:#f0ede8;padding-right:40px;">
+                <option value="" disabled selected style="background:#0f0f0f;color:rgba(240,237,232,0.45);">Select one...</option>
+                <option value="Crew missing calls during jobs" style="background:#0f0f0f;color:#f0ede8;">Crew missing calls during jobs</option>
+                <option value="No one answering after hours" style="background:#0f0f0f;color:#f0ede8;">No one answering after hours</option>
+                <option value="Leads not following up" style="background:#0f0f0f;color:#f0ede8;">Leads not following up</option>
+                <option value="Other" style="background:#0f0f0f;color:#f0ede8;">Other — I'll describe below</option>
+              </select>
+              <svg style="position:absolute;right:14px;top:70%;transform:translateY(-50%);pointer-events:none;opacity:0.5;" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#f0ede8" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <input type="text" id="otherInput" name="challenge_detail" class="field" placeholder="Describe your challenge..." style="display:none;width:100%;" />
             <button type="submit" class="submit-btn">Show me how to fix this →</button>
             <p class="form-note">We respond within 1 hour during business hours. No spam.</p>
           </form>
@@ -1454,6 +1459,19 @@
     setFill(jobSlider);
     setFill(callsSlider);
     setFill(rateSlider);
+
+    // ── Show/hide Other input
+    document.getElementById('challengeSelect').addEventListener('change', function() {
+      const otherInput = document.getElementById('otherInput');
+      if (this.value === 'Other — I\'ll describe below') {
+        otherInput.style.display = 'block';
+        otherInput.required = true;
+      } else {
+        otherInput.style.display = 'none';
+        otherInput.required = false;
+        otherInput.value = '';
+      }
+    });
 
     // ── Form submit (Formspree AJAX)
     document.getElementById('leadForm').addEventListener('submit', async e => {
