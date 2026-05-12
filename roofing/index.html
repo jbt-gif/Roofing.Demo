@@ -138,7 +138,6 @@
       background-image: url('hero-aerial.jpg');
       background-size: cover;
       background-position: center 40%;
-      background-attachment: fixed;
     }
 
     /* Dark overlay over hero image */
@@ -1507,6 +1506,17 @@
 
     // ── Init
     calc();
+
+    // ── JS Parallax (reliable cross-browser — CSS fixed fails with GPU layers)
+    const heroEl = document.querySelector('.hero');
+    function updateParallax() {
+      const scrollY = window.scrollY;
+      const heroH  = heroEl.offsetHeight;
+      if (scrollY <= heroH) {
+        heroEl.style.backgroundPositionY = (40 - scrollY * 0.3) + '%';
+      }
+    }
+    window.addEventListener('scroll', updateParallax, { passive: true });
   </script>
 
   <script type="text/javascript">
